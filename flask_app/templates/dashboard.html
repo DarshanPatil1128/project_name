@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        </style>
+</head>
+<body>
+    <h1>Welcome {{logged_in_user.first_name}}</h1>
+    <h4>All posted recipes: </h4>
+    <h4><a href="/new">Create</a></h4>
+    <h4><a href="/logout">logout</a></h4>
+    <table>
+        <tr>
+            <td>Name: </td>
+            <td>Under 30 mins:</td>
+            <td>Posted by:</td>
+            <td>Actions: </td>
+        </tr>
+        {% for one_recipe in all_the_recipes %}
+        <tr>
+            <td>{{one_recipe.name}}</td>
+            <td>{{one_recipe.under}}</td>
+            <td>{{one_recipe.creater.first_name}}</td>
+            <td>
+                {% if session['user_id'] == one_recipe.creater.id %}
+                <a href="/recipes/edit/{{one_recipe.id}}">Edit</a>
+                <a href="/recipe/delete/{{one_recipe.id}}">Delete</a>
+                {% endif %}
+                <a href="/recipe/view/{{one_recipe.id}}">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

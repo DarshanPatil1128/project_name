@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4><a href="/back">back to recipes</a></h4>
+    <h4><a href="/logout">logout</a></h4>
+    <h1>Edit Recipe for {{recipe.name}}</h1>
+
+    <form action="/recipe/update/{{recipe.id}}", method="post">
+        <label>Name: <input type="text" name="name" value="{{recipe.name}}"></label>
+        <label>Description: <input type="text" name="description" value="{{recipe.description}}"></label>
+        <label>Instructions: <input type="text" name="instructions" value="{{recipe.instructions}}"></label>
+        <label>Date Cooked/Made: <input type="date" name="date" value="{{recipe.instructions}}"></label>
+        <label>Under 30 minutes (yes or no) <input type="text" name="under" value="{{recipe.under}}"></label>
+        <input type="submit" value="Update Information">
+    </form>
+</body>
+</html>
